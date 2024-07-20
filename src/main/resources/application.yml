@@ -4,10 +4,5 @@ server:
 spring:
   application:
     name: gateway-service
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
-  instance:
-    preferIpAddress: true
+  config:
+    import: "configserver:https://config-service-xvr8.onrender.com"
