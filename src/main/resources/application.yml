@@ -6,3 +6,16 @@ spring:
     name: gateway-service
   config:
     import: "configserver:https://config-service-xvr8.onrender.com"
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: DATA-SERVICE
+            uri: lb://MOVIE-SERVICE
+            predicates:
+              - Path=/data-service/**
+            filters:
+              - name: CircuitBreaker
+                args:
+                  name: DATA-SERVICE
+                  fallbackUri: forward:/dataServiceFallback
