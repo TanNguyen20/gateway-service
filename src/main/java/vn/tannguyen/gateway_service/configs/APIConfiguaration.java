@@ -21,8 +21,8 @@ public class APIConfiguaration {
         Set<AbstractSwaggerUiConfigProperties.SwaggerUrl> urls = new HashSet<>();
         List<RouteProperties> routes = properties.getRoutes();
 
-        routes.stream().filter(route -> route.getId().matches(".*-service")).forEach(route -> {
-            String name = route.getId().replaceAll("-service", "");
+        routes.stream().filter(route -> route.getId().matches(".*-SERVICE")).forEach(route -> {
+            String name = route.getId().replaceAll("-SERVICE", "").toLowerCase();
             AbstractSwaggerUiConfigProperties.SwaggerUrl swaggerUrl = new AbstractSwaggerUiConfigProperties.SwaggerUrl(name, "/" + name, null);
             urls.add(swaggerUrl);
         });
