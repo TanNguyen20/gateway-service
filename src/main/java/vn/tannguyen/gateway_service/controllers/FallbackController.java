@@ -7,7 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class FallbackController {
 
     @GetMapping("/dataServiceFallback")
-    public String movieServiceFallback() {
+    public String dataServiceFallback() {
         return "Data service is currently unavailable. Please try again later.";
+    }
+
+    @GetMapping("/analyticsServiceFallback")
+    public String analyticsServiceFallback() {
+        return "Analytics service is currently unavailable. Please try again later.";
     }
 }

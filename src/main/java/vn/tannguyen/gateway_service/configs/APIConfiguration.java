@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 @Configuration
-public class APIConfiguaration {
+public class APIConfiguration {
     @Bean
     @Lazy(false)
     public Set<AbstractSwaggerUiConfigProperties.SwaggerUrl> apis(GatewayMvcProperties properties,
@@ -21,12 +21,11 @@ public class APIConfiguaration {
         Set<AbstractSwaggerUiConfigProperties.SwaggerUrl> urls = new HashSet<>();
         List<RouteProperties> routes = properties.getRoutes();
 
-        routes.stream().filter(route -> route.getId().matches(".*-SERVICE")).forEach(route -> {
-            String name = route.getId().replaceAll("-SERVICE", "").toLowerCase();
+        routes.stream().filter(route -> route.getId().matches(".*-service")).forEach(route -> {
+            String name = route.getId().replaceAll("-service", "").toLowerCase();
             AbstractSwaggerUiConfigProperties.SwaggerUrl swaggerUrl = new AbstractSwaggerUiConfigProperties.SwaggerUrl(name, "/" + name, null);
             urls.add(swaggerUrl);
         });
-
         swaggerUiConfigParameters.setUrls(urls);
         return urls;
     }
